@@ -1,0 +1,42 @@
+package com.lienptt.KiemTra2.pages;
+
+import org.openqa.selenium.By;
+import com.lienptt.keywords.WebUI;
+
+public class CommonPage {
+    public CommonPage() {
+    }
+
+    public By inputSearch = By.xpath("//input[@id='search_input']");
+    public By menuCustomer = By.xpath("//span[normalize-space()='Customers']");
+    public By menuProject = By.xpath("//span[normalize-space()='Projects']");
+    public By dropdownProfile = By.xpath("//a[contains(@class,'dropdown-toggle profile')]");
+    public By itemLogout = By.xpath("//a[contains(@class,'dropdown-toggle profile')]/following-sibling::ul//a[normalize-space()='Logout']");
+
+    public void openProjectPage() {
+        WebUI.clickElement(menuProject);
+        WebUI.waitForPageLoaded();
+    }
+
+    public LoginPage logout() {
+        WebUI.clickElement(dropdownProfile);
+        WebUI.sleep(1);
+        WebUI.clickElement(itemLogout);
+        WebUI.waitForPageLoaded();
+
+        return new LoginPage();
+    }
+
+    public void searchCommon(String text){
+        WebUI.setText(inputSearch, text);
+    }
+
+    LoginPage loginPage;
+    public LoginPage getLoginPage() {
+        if (loginPage == null) {
+            loginPage = new LoginPage();
+        }
+        return loginPage;
+    }
+
+}
