@@ -3,7 +3,7 @@
     <test name="Login Test Parallel">
         <classes>
             <class name="com.lienptt.KiemTra2.testcases.AddNewProductTest" />
-            <class name="com.lienptt.KiemTra2.testcases.ProductDetail"></class>
+            <class name="com.lienptt.KiemTra2.testcases.ProductDetailTest"></class>
         </classes>
     </test>
 </suite>
