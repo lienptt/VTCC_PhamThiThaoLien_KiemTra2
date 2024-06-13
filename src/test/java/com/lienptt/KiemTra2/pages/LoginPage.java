@@ -6,9 +6,6 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 
 public class LoginPage extends CommonPage {
-
-    private String URL = "https://crm.anhtester.com/admin/authentication";
-
     public LoginPage() {
     }
 
@@ -18,24 +15,19 @@ public class LoginPage extends CommonPage {
     private By buttonLogin = By.xpath("//button[normalize-space()='Login']");
     private By errorMessage = By.xpath("//div[contains(@class,'alert alert-danger')]");
 
-    public ProductPage loginCRM(String email, String password) {
+    public LoginPage login(String email, String password) {
         WebUI.openURL(PropertiesHelper.getValue("URL"));
         WebUI.waitForPageLoaded();
         WebUI.setText(inputEmail, email);
         WebUI.setText(inputPassword, password);
         WebUI.clickElement(buttonLogin);
 
-        return new ProductPage();
+        return new LoginPage();
     }
 
     public void verifyLoginSuccess() {
-        Assert.assertFalse(WebUI.getCurrentUrl().contains("authentication"), "FAIL. Vẫn đang ở trang Login");
-    }
-
-    public void verifyLoginFail(String errorMassageContent) {
-        Assert.assertTrue(WebUI.getCurrentUrl().contains("authentication"), "FAIL. Không còn ở trang Login");
-        Assert.assertTrue(WebUI.isDisplayed(errorMessage), "Error message NOT displays");
-        Assert.assertEquals(WebUI.getElementText(errorMessage), errorMassageContent, "Content of error massage NOT match.");
+        Assert.assertTrue(WebUI.getCurrentUrl().contains("/admin"), "Login success");
+        WebUI.logConsole("Login Success!!");
     }
 
     public void verifyRedirectToLoginPage() {

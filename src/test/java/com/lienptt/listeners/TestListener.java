@@ -30,7 +30,6 @@ public class TestListener implements ITestListener {
     @Override
     public void onFinish(ITestContext iTestContext) {
         LogUtils.info("onFinish: " + iTestContext.getEndDate());
-        //Gửi mail
 
         //Kết thúc và thực thi Extents Report
         ExtentReportManager.getExtentReports().flush();
@@ -41,7 +40,6 @@ public class TestListener implements ITestListener {
         LogUtils.info("Start test case " + iTestResult.getName());
         CaptureHelper.startRecord(iTestResult.getName());
 
-        //Bắt đầu ghi 1 TCs mới vào Extent Report
         ExtentTestManager.saveToReport(getTestName(iTestResult), getTestDescription(iTestResult));
     }
 
@@ -58,7 +56,6 @@ public class TestListener implements ITestListener {
     public void onTestFailure(ITestResult iTestResult) {
         LogUtils.info("FAILED!! Test case " + iTestResult.getName());
         CaptureHelper.stopRecord();
-        //CaptureHelper.captureScreenshot(iTestResult.getName());
 
         LogUtils.error(iTestResult.getThrowable());
 
@@ -66,10 +63,6 @@ public class TestListener implements ITestListener {
         ExtentTestManager.addScreenshot(iTestResult.getName());
         ExtentTestManager.logMessage(Status.FAIL, iTestResult.getThrowable().toString());
         ExtentTestManager.logMessage(Status.FAIL, iTestResult.getName() + " is failed.");
-
-        //Allure Report
-        AllureManager.saveTextLog(iTestResult.getThrowable().toString());
-        AllureManager.saveScreenshotPNG();
     }
 
     @Override

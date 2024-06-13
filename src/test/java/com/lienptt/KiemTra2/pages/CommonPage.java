@@ -8,15 +8,10 @@ public class CommonPage {
     }
 
     public By inputSearch = By.xpath("//input[@id='search_input']");
-    public By menuCustomer = By.xpath("//span[normalize-space()='Customers']");
-    public By menuProject = By.xpath("//span[normalize-space()='Projects']");
+    public By menuDashboard = By.xpath("//span[normalize-space()='Dashboard']");
     public By dropdownProfile = By.xpath("//a[contains(@class,'dropdown-toggle profile')]");
     public By itemLogout = By.xpath("//a[contains(@class,'dropdown-toggle profile')]/following-sibling::ul//a[normalize-space()='Logout']");
 
-    public void openProjectPage() {
-        WebUI.clickElement(menuProject);
-        WebUI.waitForPageLoaded();
-    }
 
     public LoginPage logout() {
         WebUI.clickElement(dropdownProfile);

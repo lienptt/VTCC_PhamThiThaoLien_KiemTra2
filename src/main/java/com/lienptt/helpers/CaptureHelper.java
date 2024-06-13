@@ -74,12 +74,10 @@ public class CaptureHelper extends ScreenRecorder{
         }
     }
 
-    //Tạo format ngày giờ để xíu gắn dô cái name của screenshot hoặc record video không bị trùng tên (không bị ghi đè file)
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH-mm-ss");
 
     public static void captureScreenshot(String screenshotName) {
         try {
-            // Tạo tham chiếu đối tượng của TakesScreenshot với dirver hiện tại
             TakesScreenshot ts = (TakesScreenshot) DriverManager.getDriver();
             // Gọi hàm getScreenshotAs để chuyển hóa hình ảnh về dạng FILE
             File source = ts.getScreenshotAs(OutputType.FILE);

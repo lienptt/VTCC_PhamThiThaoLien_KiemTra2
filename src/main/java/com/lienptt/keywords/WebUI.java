@@ -71,14 +71,6 @@ public class WebUI {
         ExtentTestManager.logMessage(Status.PASS, "Click on element " + by);
     }
 
-    @Step("Click element {0} with timeout {1}")
-    public static void clickElement(By by, int timeout) {
-        waitForElementToBeClickable(by, timeout);
-        sleep(STEP_TIME);
-        DriverManager.getDriver().findElement(by).click();
-        LogUtils.info("Click element: " + by);
-        ExtentTestManager.logMessage(Status.PASS, "Click on element " + by);
-    }
 
     @Step("Set text {1} on element {0}")
     public static void setText(By by, String value) {
